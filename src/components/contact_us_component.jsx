@@ -1,15 +1,23 @@
+import { mapImage } from "@/app/assests";
 import React from "react";
 
 export const ContactUsomponent = () => {
   return (
-    <div >
+    <div>
       {" "}
       <section id="contact" className="ftco-appointment">
         <div className="overlay"></div>
         <div className="container-wrap">
           <div className="row no-gutters d-md-flex align-items-center">
             <div className="col-md-6 d-flex align-self-stretch">
-              <div id="map"></div>
+              {/* <div id="map"></div> */}
+              <a href="https://maps.app.goo.gl/Zz8VZKLycA5rjFqV9" target="_blank"    style={{ width: "100%", height: "100%" }}>
+                <img
+                  src={mapImage.src}
+                  alt=""
+                  style={{ width: "100%", height: "100%" }}
+                />
+              </a>
             </div>
             <div className="col-md-6 appointment ftco-animate">
               <h3 className="mb-3">Contact Us</h3>
