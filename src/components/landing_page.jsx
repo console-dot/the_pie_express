@@ -11,11 +11,11 @@ export const LandingPage = () => {
   return (
     <>
       <Slidercomponent />
-      <IntroComponent />
-      <AboutComponent/>
       <MenuComponent />
+      <IntroComponent />
       <ServicesComponent/>
       <BlogComponent/>
+      <AboutComponent/>
       <ContactUsomponent/>
       
     </>
