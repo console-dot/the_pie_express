@@ -1,7 +1,39 @@
-import React from "react";
-import "../css/style.css";
-import { logo } from "@/assests";
-export const NavbarComponent = () => {
+import React, { useEffect, useState } from "react";
+import { logo } from "@/app/assests";
+export const NavbarComponent = ({}) => {
+  const [activeSection, setActiveSection] = useState("");
+  const scrollToSection = (sectionId) => {
+    console.log("dsd");
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0.5, // When 50% of the section is visible, consider it in view
+      }
+    );
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+console.log(activeSection)
   return (
     <>
       <nav
@@ -9,8 +41,8 @@ export const NavbarComponent = () => {
         id="ftco-navbar"
       >
         <div className="container">
-          <a className="navbar-brand " href="index.html">
-          <img src={logo?.src} className="w-[12%] h-full" alt="The Pie Express Logo" />
+          <a className="navbar-brand "onClick={() => scrollToSection("home")}>
+            <img src={logo?.src} height={"70px"} alt="The Pie Express Logo" />
           </a>
           <button
             className="navbar-toggler"
@@ -23,37 +55,61 @@ export const NavbarComponent = () => {
           >
             <span className="oi oi-menu"></span> Menu
           </button>
-          <div className="" id="ftco-nav">
+          <div className="collapse navbar-collapse" id="ftco-nav">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item active">
-                <a href="index.html" className="nav-link">
+                <div
+                  onClick={() => scrollToSection("home")}
+                  className={`nav-link ${activeSection === "home" ? "active" : ""}`}
+                  style={{ cursor: "pointer" }}
+                >
                   Home
-                </a>
+                </div>
               </li>
               <li className="nav-item">
-                <a href="menu.html" className="nav-link">
+                <div
+                  onClick={() => scrollToSection("menu")}
+                  className={`nav-link ${activeSection === "menu" ? "active" : ""}`}
+                  style={{ cursor: "pointer" }}
+                >
                   Menu
-                </a>
+                </div>
               </li>
               <li className="nav-item">
-                <a href="services.html" className="nav-link">
+                <div
+                  onClick={() => scrollToSection("services")}
+                  className={`nav-link ${activeSection === "services" ? "active" : ""}`}
+                  style={{ cursor: "pointer" }}
+                >
                   Services
-                </a>
+                </div>
               </li>
               <li className="nav-item">
-                <a href="blog.html" className="nav-link">
+                <div
+                  onClick={() => scrollToSection("blog")}
+                  className={`nav-link ${activeSection === "blog" ? "active" : ""}`}
+                  style={{ cursor: "pointer" }}
+                >
                   Blog
-                </a>
+                </div>
               </li>
               <li className="nav-item">
-                <a href="about.html" className="nav-link">
+                <div
+                  onClick={() => scrollToSection("about")}
+                  className={`nav-link ${activeSection === "about" ? "active" : ""}`}
+                  style={{ cursor: "pointer" }}
+                >
                   About
-                </a>
+                </div>
               </li>
               <li className="nav-item">
-                <a href="contact.html" className="nav-link">
+                <div
+                  onClick={() => scrollToSection("contact")}
+                  className={`nav-link ${activeSection === "contact" ? "active" : ""}`}
+                  style={{ cursor: "pointer" }}
+                >
                   Contact
-                </a>
+                </div>
               </li>
             </ul>
           </div>
