@@ -2,6 +2,13 @@ import { firstImage, imageSlider1, imageSlider2, SecondImage } from "@/app/asses
 import React from "react";
 
 export const Slidercomponent = () => {
+  const scrollToSection = (sectionId) => {
+    console.log("dsd");
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <section id="home"
       className="home-slider owl-carousel img"
@@ -24,15 +31,15 @@ export const Slidercomponent = () => {
                 with the necessary regelialia.
               </p>
               <p>
-                <a href="#" className="btn btn-primary p-3 px-xl-4 py-xl-3">
+                {/* <a href="#" className="btn btn-primary p-3 px-xl-4 py-xl-3">
                   Order Now
-                </a>{" "}
-                <a
-                  href="#"
+                </a>{" "} */}
+                <div
+                  onClick={()=>scrollToSection("menu")}
                   className="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3"
                 >
                   View Menu
-                </a>
+                </div>
               </p>
             </div>
             <div className="col-md-6 ftco-animate">
@@ -57,15 +64,15 @@ export const Slidercomponent = () => {
                 with the necessary regelialia.
               </p>
               <p>
-                <a href="#" className="btn btn-primary p-3 px-xl-4 py-xl-3">
+                {/* <a href="#" className="btn btn-primary p-3 px-xl-4 py-xl-3">
                   Order Now
-                </a>{" "}
-                <a
-                  href="#"
+                </a>{" "} */}
+                <div
+                    onClick={()=>scrollToSection("menu")}
                   className="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3"
                 >
                   View Menu
-                </a>
+                </div>
               </p>
             </div>
             <div className="col-md-6 ftco-animate">
@@ -95,15 +102,15 @@ export const Slidercomponent = () => {
                 with the necessary regelialia.
               </p>
               <p>
-                <a href="#" className="btn btn-primary p-3 px-xl-4 py-xl-3">
+                {/* <a href="#" className="btn btn-primary p-3 px-xl-4 py-xl-3">
                   Order Now
-                </a>{" "}
-                <a
-                  href="#"
+                </a>{" "} */}
+                <div
+                   onClick={()=>scrollToSection("menu")}
                   className="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3"
                 >
                   View Menu
-                </a>
+                </div>
               </p>
             </div>
           </div>

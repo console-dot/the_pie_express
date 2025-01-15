@@ -16,6 +16,8 @@ import pizza8 from "./pizza-8.jpg";
 import image1 from "./image_1.jpg";
 import image2 from "./image_2.jpg";
 import image3 from "./image_3.jpg";
+import mapImage from "./pie-express-map.png";
+
 
 export {
   logo,
@@ -36,4 +38,5 @@ export {
   image1,
   image2,
   image3,
+  mapImage
 };
