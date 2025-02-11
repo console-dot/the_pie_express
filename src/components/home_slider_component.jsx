@@ -1,16 +1,22 @@
-import { firstImage, imageSlider1, imageSlider2, SecondImage } from "@/app/assests";
+import {
+  firstImage,
+  imageSlider1,
+  imageSlider2,
+  SecondImage,
+} from "@/app/assests";
 import React from "react";
 
 export const Slidercomponent = () => {
   const scrollToSection = (sectionId) => {
-    console.log("dsd");
     const section = document.getElementById(sectionId);
     if (section) {
+      console.log(section);
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
   return (
-    <section id="home"
+    <section
+      id="home"
       className="home-slider owl-carousel img"
       style={{
         backgroundImage: `url(${firstImage?.src})`,
@@ -35,7 +41,7 @@ export const Slidercomponent = () => {
                   Order Now
                 </a>{" "} */}
                 <div
-                  onClick={()=>scrollToSection("menu")}
+                  onClick={() => scrollToSection("menu")}
                   className="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3"
                 >
                   View Menu
@@ -68,7 +74,7 @@ export const Slidercomponent = () => {
                   Order Now
                 </a>{" "} */}
                 <div
-                    onClick={()=>scrollToSection("menu")}
+                  onClick={() => scrollToSection("menu")}
                   className="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3"
                 >
                   View Menu
@@ -106,7 +112,7 @@ export const Slidercomponent = () => {
                   Order Now
                 </a>{" "} */}
                 <div
-                   onClick={()=>scrollToSection("menu")}
+                  onClick={() => scrollToSection("menu")}
                   className="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3"
                 >
                   View Menu

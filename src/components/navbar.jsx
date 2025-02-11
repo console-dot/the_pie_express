@@ -1,17 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { logo } from "@/app/assests";
-export const NavbarComponent = ({}) => {
+import { GiFullWoodBucket } from "react-icons/gi";
+import { usePathname, useRouter } from "next/navigation";
+import AppContext from "@/context";
+
+export const NavbarComponent = () => {
+  const { setBasketModal, cartItems } = useContext(AppContext);
+  const router = useRouter();
+  const [isPathName, setIsPathName] = useState(false);
+  const pathname = usePathname();
   const [activeSection, setActiveSection] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  console.log(cartItems);
   const scrollToSection = (sectionId) => {
-    console.log("dsd");
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
+      setMenuOpen(false);
     }
   };
+
   useEffect(() => {
     const sections = document.querySelectorAll("section");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -20,101 +30,87 @@ export const NavbarComponent = ({}) => {
           }
         });
       },
-      {
-        threshold: 0.5, // When 50% of the section is visible, consider it in view
-      }
+      { threshold: 0.5 }
     );
 
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    return () => {
-      observer.disconnect();
-    };
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
-console.log(activeSection)
+
+  useEffect(() => {
+    setIsPathName(pathname === "/bucket");
+  }, [pathname]);
+
   return (
-    <>
-      <nav
-        className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
-        id="ftco-navbar"
-      >
-        <div className="container">
-          <a className="navbar-brand "onClick={() => scrollToSection("home")}>
-            <img src={logo?.src} height={"70px"} alt="The Pie Express Logo" />
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#ftco-nav"
-            aria-controls="ftco-nav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+    <nav className=" fixed w-full z-50 shadow-md p-3 bg-[#121618] ">
+      <div className="container mx-auto flex items-center justify-between  relative">
+        <a
+          className="cursor-pointer"
+          onClick={() => {
+            scrollToSection("home");
+            setBasketModal(false);
+          }}
+        >
+          <img src={logo?.src} className="h-14" alt="The Pie Express Logo" />
+        </a>
+        <button
+          className="lg:hidden text-white focus:outline-none"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span className="text-2xl md:mr-0 mr-4">☰</span>
+        </button>
+        <div
+          className={`lg:flex space-x-6 items-center absolute lg:static  w-full lg:w-auto top-16 left-0 transition-transform duration-300 ease-in-out ${
+            menuOpen ? "block" : "hidden"
+          }`}
+        >
+          {[
+            { id: "home", label: "Home" },
+            { id: "menu", label: "Menu" },
+            { id: "services", label: "Services" },
+            { id: "blog", label: "Blog" },
+            { id: "about", label: "About" },
+            { id: "contact", label: "Contact" },
+          ].map(({ id, label }) => (
+            <div
+              key={id}
+              onClick={() => {
+                scrollToSection(id);
+                setBasketModal(false);
+              }}
+              className={`cursor-pointer text-white hover:text-gray-300 transition lg:p-0`}
+            >
+              {label}
+            </div>
+          ))}
+          <div
+            className="relative cursor-pointer"
+            onClick={() => setBasketModal(true)}
           >
-            <span className="oi oi-menu"></span> Menu
-          </button>
-          <div className="collapse navbar-collapse" id="ftco-nav">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item active">
-                <div
-                  onClick={() => scrollToSection("home")}
-                  className={`nav-link ${activeSection === "home" ? "active" : ""}`}
-                  style={{ cursor: "pointer" }}
-                >
-                  Home
-                </div>
-              </li>
-              <li className="nav-item">
-                <div
-                  onClick={() => scrollToSection("menu")}
-                  className={`nav-link ${activeSection === "menu" ? "active" : ""}`}
-                  style={{ cursor: "pointer" }}
-                >
-                  Menu
-                </div>
-              </li>
-              <li className="nav-item">
-                <div
-                  onClick={() => scrollToSection("services")}
-                  className={`nav-link ${activeSection === "services" ? "active" : ""}`}
-                  style={{ cursor: "pointer" }}
-                >
-                  Services
-                </div>
-              </li>
-              <li className="nav-item">
-                <div
-                  onClick={() => scrollToSection("blog")}
-                  className={`nav-link ${activeSection === "blog" ? "active" : ""}`}
-                  style={{ cursor: "pointer" }}
-                >
-                  Blog
-                </div>
-              </li>
-              <li className="nav-item">
-                <div
-                  onClick={() => scrollToSection("about")}
-                  className={`nav-link ${activeSection === "about" ? "active" : ""}`}
-                  style={{ cursor: "pointer" }}
-                >
-                  About
-                </div>
-              </li>
-              <li className="nav-item">
-                <div
-                  onClick={() => scrollToSection("contact")}
-                  className={`nav-link ${activeSection === "contact" ? "active" : ""}`}
-                  style={{ cursor: "pointer" }}
-                >
-                  Contact
-                </div>
-              </li>
-            </ul>
+            <GiFullWoodBucket className=" hidden md:flex text-yellow-500 text-6xl cursor-pointer" />
+            <div className="absolute bg-white h-5 w-5 top-8 rounded-sm right-5">
+              <div className="w-full h-full flex items-center justify-center mt-2">
+                <p className="text-center textr-black"> {cartItems?.length}</p>
+              </div>
+            </div>
           </div>
         </div>
-      </nav>
-    </>
+
+        <div
+          className="absolute top-0 right-[-10px] cursor-pointer lg:hidden"
+          onClick={() => setBasketModal(true)}
+        >
+          <GiFullWoodBucket
+            onClick={() => setBasketModal(true)}
+            className="  z-50  text-yellow-500 text-5xl cursor-pointer"
+          />
+          <div className="absolute  bg-white h-4 w-4 top-[26px] rounded-sm right-4">
+            <div className="w-full h-full flex items-center justify-center mt-2">
+              <p className="text-center textr-black"> {cartItems?.length}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
