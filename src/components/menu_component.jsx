@@ -9,12 +9,79 @@ import {
   pizza7,
   pizza8,
 } from "@/app/assests";
-import React from "react";
+import AppContext from "@/context";
+import React, { useContext, useState } from "react";
+import "../app/css/cartPage.css";
+// import { BasketModal } from "./basketModal";
 
 export const MenuComponent = () => {
+  const { handleAddToCart, animate } = useContext(AppContext);
+  const data = [
+    {
+      name: "Italian Pizza",
+      decription:
+        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia",
+      image: pizza1,
+      price: 20,
+      quantity: 1,
+      size: "Large",
+      id: 32,
+    },
+    {
+      name: "Greek Pizza",
+      decription:
+        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia",
+      image: pizza2,
+      price: 20,
+      quantity: 1,
+      size: "xl",
+      id: 343,
+    },
+    {
+      name: "Caucasian Pizza",
+      decription:
+        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia",
+      image: pizza3,
+      price: 20,
+      quantity: 1,
+      size: "medium",
+      id: 23,
+    },
+    {
+      name: "American Pizza",
+      decription:
+        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia",
+      image: pizza4,
+      price: 20,
+      quantity: 1,
+      size: "Large",
+      id: 44,
+    },
+    {
+      name: "Tomatoe Pie",
+      decription:
+        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia",
+      image: pizza5,
+      price: 20,
+      quantity: 1,
+      size: "2xl",
+      id: 232,
+    },
+    {
+      name: "Margherita",
+      decription:
+        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia",
+      image: pizza6,
+      price: 20,
+      quantity: 1,
+      size: "small",
+      id: 12,
+    },
+  ];
+
   return (
-    <div >
-      <section id="menu"  className="ftco-section">
+    <div>
+      <section id="menu" className="ftco-section">
         <div className="container">
           <div className="row justify-content-center mb-5 pb-3">
             <div className="col-md-7 heading-section ftco-animate text-center">
@@ -28,151 +95,38 @@ export const MenuComponent = () => {
         </div>
         <div className="container-wrap">
           <div className="row no-gutters d-flex">
-            <div className="col-lg-4 d-flex ftco-animate">
-              <div className="services-wrap d-flex">
-                <a
-                  href="#"
-                  className="img"
-                  style={{
-                    backgroundImage: `url(${pizza1?.src})`,
-                  }}
-                ></a>
-                <div className="text p-4">
-                  <h3>Italian Pizza</h3>
-                  <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia{" "}
-                  </p>
-                  <p className="price">
-                    <span>$2.90</span>{" "}
-                    <a href="#" className="ml-2 btn btn-white btn-outline-white">
-                      Order
-                    </a>
-                  </p>
+            {data?.map((pizza, index) => (
+              <div className="col-lg-4 d-flex ftco-animate">
+                <div className="services-wrap d-flex">
+                  <a
+                    className={`${
+                      Math.floor(index / 3) % 2 === 1
+                        ? "img order-lg-last"
+                        : "img"
+                    }`}
+                    style={{
+                      backgroundImage: `url(${pizza?.image.src})`,
+                    }}
+                  ></a>
+                  <div className="text p-4">
+                    <h3>{pizza.name}</h3>
+                    <p>{pizza.decription}</p>
+                    <p className="price">
+                      <span>${pizza.price}</span>{" "}
+                      <a
+                        onClick={() => handleAddToCart(pizza)}
+                        className="ml-2 btn btn-white btn-outline-white"
+                      >
+                        {animate === pizza.id && (
+                          <span className="plus-icon animate">+</span>
+                        )}{" "}
+                        Add to cart
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-lg-4 d-flex ftco-animate">
-              <div className="services-wrap d-flex">
-                <a
-                  href="#"
-                  className="img"
-                  style={{
-                    backgroundImage: `url(${pizza2?.src})`,
-                  }}
-                ></a>
-                <div className="text p-4">
-                  <h3>Greek Pizza</h3>
-                  <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia
-                  </p>
-                  <p className="price">
-                    <span>$2.90</span>{" "}
-                    <a href="#" className="ml-2 btn btn-white btn-outline-white">
-                      Order
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 d-flex ftco-animate">
-              <div className="services-wrap d-flex">
-                <a
-                  href="#"
-                  className="img"
-                  style={{
-                    backgroundImage: `url(${pizza3?.src})`,
-                  }}
-                ></a>
-                <div className="text p-4">
-                  <h3>Caucasian Pizza</h3>
-                  <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia
-                  </p>
-                  <p className="price">
-                    <span>$2.90</span>{" "}
-                    <a href="#" className="ml-2 btn btn-white btn-outline-white">
-                      Order
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 d-flex ftco-animate">
-              <div className="services-wrap d-flex">
-                <a
-                  href="#"
-                  className="img order-lg-last"
-                  style={{
-                    backgroundImage: `url(${pizza4?.src})`,
-                  }}
-                ></a>
-                <div className="text p-4">
-                  <h3>American Pizza</h3>
-                  <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia{" "}
-                  </p>
-                  <p className="price">
-                    <span>$2.90</span>{" "}
-                    <a href="#" className="ml-2 btn btn-white btn-outline-white">
-                      Order
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 d-flex ftco-animate">
-              <div className="services-wrap d-flex">
-                <a
-                  href="#"
-                  className="img order-lg-last"
-                  style={{
-                    backgroundImage: `url(${pizza5?.src})`,
-                  }}
-                ></a>
-                <div className="text p-4">
-                  <h3>Tomatoe Pie</h3>
-                  <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia
-                  </p>
-                  <p className="price">
-                    <span>$2.90</span>{" "}
-                    <a href="#" className="ml-2 btn btn-white btn-outline-white">
-                      Order
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 d-flex ftco-animate">
-              <div className="services-wrap d-flex">
-                <a
-                  href="#"
-                  className="img order-lg-last"
-                  style={{
-                    backgroundImage: `url(${pizza6?.src})`,
-                  }}
-                ></a>
-                <div className="text p-4">
-                  <h3>Margherita</h3>
-                  <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia
-                  </p>
-                  <p className="price">
-                    <span>$2.90</span>{" "}
-                    <a href="#" className="ml-2 btn btn-white btn-outline-white">
-                      Order
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -376,7 +330,7 @@ export const MenuComponent = () => {
           </div>
         </div>
       </section>
-      <section  id="menu" className="ftco-menu">
+      <section id="menu" className="ftco-menu">
         <div className="container-fluid">
           <div className="row d-md-flex">
             <div
@@ -444,7 +398,10 @@ export const MenuComponent = () => {
                   </div>
                 </div>
                 <div className="col-md-12 d-flex align-items-center">
-                  <div className="tab-content ftco-animate" id="v-pills-tabContent">
+                  <div
+                    className="tab-content ftco-animate"
+                    id="v-pills-tabContent"
+                  >
                     <div
                       className="tab-pane fade show active"
                       id="v-pills-1"
@@ -452,99 +409,44 @@ export const MenuComponent = () => {
                       aria-labelledby="v-pills-1-tab"
                     >
                       <div className="row">
-                        <div className="col-md-4 text-center">
-                          <div className="menu-wrap">
-                            <a
-                              href="#"
-                              className="menu-img img mb-4"
-                              style={{
-                                backgroundImage: `url(${pizza1?.src})`,
-                              }}
-                            ></a>
-                            <div className="text">
-                              <h3>
-                                <a href="#">Itallian Pizza</a>
-                              </h3>
-                              <p>
-                                Far far away, behind the word mountains, far
-                                from the countries Vokalia and Consonantia.
-                              </p>
-                              <p className="price">
-                                <span>$2.90</span>
-                              </p>
-                              <p>
-                                <a
-                                  href="#"
-                                  className="btn btn-white btn-outline-white"
-                                >
-                                  Add to cart
-                                </a>
-                              </p>
+                        {data?.map((pizza) => (
+                          <div className="col-md-4 text-center">
+                            <div className="menu-wrap">
+                              <a
+                                href="#"
+                                className="menu-img img mb-4"
+                                style={{
+                                  backgroundImage: `url(${pizza?.image.src})`,
+                                }}
+                              ></a>
+                              <div className="text">
+                                <h3>
+                                  <a href="#">{pizza.name}</a>
+                                </h3>
+                                <p>
+                                  Far far away, behind the word mountains, far
+                                  from the countries Vokalia and Consonantia.
+                                </p>
+                                <p className="price">
+                                  <span>{pizza.price} Rs</span>
+                                </p>
+                                <p>
+                                  <a
+                                    onClick={() => handleAddToCart(pizza)}
+                                    className="ml-2 btn btn-white btn-outline-white"
+                                  >
+                                    {animate === pizza.id && (
+                                      <span className="plus-icon animate">
+                                        +
+                                      </span>
+                                    )}{" "}
+                                    Add to cart
+                                  </a>
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="col-md-4 text-center">
-                          <div className="menu-wrap">
-                            <a
-                              href="#"
-                              className="menu-img img mb-4"
-                              style={{
-                                backgroundImage: `url(${pizza2?.src})`,
-                              }}
-                            ></a>
-                            <div className="text">
-                              <h3>
-                                <a href="#">Itallian Pizza</a>
-                              </h3>
-                              <p>
-                                Far far away, behind the word mountains, far
-                                from the countries Vokalia and Consonantia.
-                              </p>
-                              <p className="price">
-                                <span>$2.90</span>
-                              </p>
-                              <p>
-                                <a
-                                  href="#"
-                                  className="btn btn-white btn-outline-white"
-                                >
-                                  Add to cart
-                                </a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-md-4 text-center">
-                          <div className="menu-wrap">
-                            <a
-                              href="#"
-                              className="menu-img img mb-4"
-                              style={{
-                                backgroundImage: `url(${pizza3?.src})`,
-                              }}
-                            ></a>
-                            <div className="text">
-                              <h3>
-                                <a href="#">Itallian Pizza</a>
-                              </h3>
-                              <p>
-                                Far far away, behind the word mountains, far
-                                from the countries Vokalia and Consonantia.
-                              </p>
-                              <p className="price">
-                                <span>$2.90</span>
-                              </p>
-                              <p>
-                                <a
-                                  href="#"
-                                  className="btn btn-white btn-outline-white"
-                                >
-                                  Add to cart
-                                </a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                        ))}
                       </div>
                     </div>
 
@@ -845,6 +747,7 @@ export const MenuComponent = () => {
           </div>
         </div>
       </section>
+      {/* {basketModal && <BasketModal />} */}
     </div>
   );
 };
