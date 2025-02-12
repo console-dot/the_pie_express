@@ -83,7 +83,7 @@ export const NavbarComponent = () => {
               {label}
             </div>
           ))}
-          <div
+          {/* <div
             className="relative cursor-pointer"
             onClick={() => setBasketModal(true)}
           >
@@ -93,10 +93,10 @@ export const NavbarComponent = () => {
                 <p className="text-center textr-black"> {cartItems?.length}</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
-        <div
+        {/* <div
           className="absolute top-0 right-[-10px] cursor-pointer lg:hidden"
           onClick={() => setBasketModal(true)}
         >
@@ -109,7 +109,7 @@ export const NavbarComponent = () => {
               <p className="text-center textr-black"> {cartItems?.length}</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </nav>
   );

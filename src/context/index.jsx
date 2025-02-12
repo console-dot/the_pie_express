@@ -8,9 +8,10 @@ export function AppProvider({ children }) {
   const [animate, setAnimate] = useState();
   const [basketModal, setBasketModal] = useState(false);
   const handleAddToCart = (items) => {
+    setBasketModal(true);
     setAnimate(items?.id);
     setTimeout(() => {
-      setClickedId(null); 
+      setClickedId(null);
     }, 1000);
 
     setCartItems([...cartItems, items]);
