@@ -3,8 +3,8 @@ import React from "react";
 
 export const ContactUsComponent = () => {
   return (
-    <div>
-      <section id="contact" className="ftco-appointment">
+    <div className="pt-[7rem]" id="contact">
+      <section  className="ftco-appointment ">
         <div className="overlay"></div>
         <div className="container-wrap">
           <div className="row no-gutters d-md-flex align-items-center">

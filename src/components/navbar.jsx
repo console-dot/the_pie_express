@@ -15,7 +15,7 @@ export const NavbarComponent = () => {
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
       setMenuOpen(false);
     }
   };
@@ -42,8 +42,8 @@ export const NavbarComponent = () => {
   }, [pathname]);
 
   return (
-    <nav className=" fixed w-full z-50 shadow-md p-3 bg-[#121618] ">
-      <div className="container mx-auto flex items-center justify-between  relative">
+    <nav className=" md:fixed w-full z-50 shadow-md p-3 bg-[#121618] relative">
+      <div className="container mx-auto flex items-center justify-between w-[100%] ">
         <a
           className="cursor-pointer"
           onClick={() => {
@@ -57,11 +57,11 @@ export const NavbarComponent = () => {
           className="lg:hidden text-white focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <span className="text-2xl md:mr-0 mr-4">☰</span>
+          <span className="text-2xl md:mr-0 ">☰</span>
         </button>
         <div
-          className={`lg:flex space-x-6 items-center absolute lg:static  w-full lg:w-auto top-16 left-0 transition-transform duration-300 ease-in-out ${
-            menuOpen ? "block" : "hidden"
+          className={`lg:flex space-x-6 items-center py-3 bg-[#121618] lg:bg-transparent absolute lg:static  w-[100%] lg:w-auto top-20 left-0 transition-transform duration-300 ease-in-out ${
+            menuOpen ? "block w-full" : "hidden"
           }`}
         >
           {[
@@ -78,7 +78,9 @@ export const NavbarComponent = () => {
                 scrollToSection(id);
                 setBasketModal(false);
               }}
-              className={`cursor-pointer text-white hover:text-gray-300 transition lg:p-0`}
+              className={`cursor-pointer text-white hover:text-gray-300 transition lg:p-0 ${
+                label == "Home" && "hidden md:flex"
+              }`}
             >
               {label}
             </div>

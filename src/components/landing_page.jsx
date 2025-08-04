@@ -27,15 +27,14 @@ export const LandingPage = () => {
             left: 0,
             display: "flex",
             justifyContent: "center",
-           }}
-            
+          }}
         >
+          <div className="fixed w-[100%] h-[100%] bg-black opacity-10"></div>
           <div
             style={{
               background: "#1A191E",
               borderRadius: "8px",
               position: "relative",
-            
             }}
             className="max-w-6xl md:p-6 p-3"
           >
