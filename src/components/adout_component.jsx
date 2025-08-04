@@ -4,9 +4,7 @@ import { GiFullPizza } from "react-icons/gi";
 
 export const AboutComponent = () => {
   return (
-    <div >
-      {" "}
-      <section id="about" className="ftco-about d-md-flex">
+      <section id="about" className="ftco-about d-md-flex pt-[7rem]">
         <div
           className="one-half img"
           style={{
@@ -16,7 +14,7 @@ export const AboutComponent = () => {
         <div className="one-half ftco-animate">
           <div className="heading-section ftco-animate ">
             <h2 className="mb-4">
-              Welcome to <span className="flaticon"><GiFullPizza /> Pizza</span> A Restaurant
+              Welcome to <span className="flaticon"><GiFullPizza /> Pizza</span> Restaurant
             </h2>
           </div>
           <div>
@@ -33,6 +31,5 @@ export const AboutComponent = () => {
           </div>
         </div>
       </section>
-    </div>
   );
 };

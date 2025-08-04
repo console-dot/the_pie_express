@@ -5,7 +5,7 @@ import { LuClock9 } from "react-icons/lu";
 export const IntroComponent = () => {
   return (
     <>
-      <section className="ftco-intro" id="about">
+      <section className="ftco-intro" >
         <div className="container-wrap">
           <div className="wrap d-md-flex">
             <div className="info">
@@ -15,7 +15,7 @@ export const IntroComponent = () => {
                     <span className="icon"><FaPhone /></span>
                   </div>
                   <div className="text">
-                    <h3>000 (123) 456 7890</h3>
+                    <h3>+92 322 4597570</h3>
                     <p>A small river named Duden flows</p>
                   </div>
                 </div>
@@ -24,7 +24,7 @@ export const IntroComponent = () => {
                     <span className="icon"><FaLocationCrosshairs /></span>
                   </div>
                   <div className="text">
-                    <h3>198 West 21th Street</h3>
+                    <h3>79-B Commercial Area, Food St, Central Park Lahore, Pakistan</h3>
                     <p>Suite 721 New York NY 10016</p>
                   </div>
                 </div>

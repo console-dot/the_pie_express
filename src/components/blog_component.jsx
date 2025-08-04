@@ -5,7 +5,7 @@ export const BlogComponent = () => {
   return (
     <div >
       {" "}
-      <section id="blog" className="ftco-section">
+      <section id="blog" className="ftco-section pb-0">
         <div className="container">
           <div className="row justify-content-center mb-5 pb-3">
             <div className="col-md-7 heading-section ftco-animate text-center">

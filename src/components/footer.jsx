@@ -144,14 +144,13 @@ export const FooterComponent = () => {
                     <li>
                       <span className="icon"><FaLocationDot /></span>
                       <span className="text">
-                        203 Fake St. Mountain View, San Francisco, California,
-                        USA
+                      79-B Commercial Area, Food St, Central Park Lahore, Pakistan
                       </span>
                     </li>
                     <li>
                       <a href="#">
                         <span className="icon"><FaPhone /></span>
-                        <span className="text">+2 392 3929 210</span>
+                        <span className="text">+92 322 4597570</span>
                       </a>
                     </li>
                     <li>
